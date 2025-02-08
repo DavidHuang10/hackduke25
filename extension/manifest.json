@@ -1,5 +1,5 @@
 {
-    "name": "Screen Time Manager",
+    "name": "Screen Time Analysis & Report",
     "description": "Tracks the time spent on different websites and provides analytics.",
     "version": "1.0",
     "manifest_version": 3,
@@ -8,7 +8,8 @@
         "storage",
         "activeTab",
         "alarms",
-        "notifications"
+        "notifications",
+        "idle"
     ],
     "background": {
         "service_worker": "background.js"

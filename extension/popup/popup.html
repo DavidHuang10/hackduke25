@@ -1,5 +1,32 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <title>STAR - Screen Time Analysis & Report</title>
+        <style>
+            body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+            }
+            .switch-container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+          </style>
+    </head>
     <body>
-        <h1>Screen Time Manager</h1>
+        <h1>STAR</h1>
+        <!-- On/Off switch -->
+        <div class="switch-container">
+            <label for="toggle-switch">Tracking:</label>
+            <input type="checkbox" id="toggle-switch" />
+        </div>
+        <!-- Information -->
+        <div id="time-info">
+            <h2>Time Spent</h2>
+            <div id="time-list"></div>
+        </div>
+
+        <script src="popup.js"></script>
     </body>
 </html>
