@@ -1,4 +1,6 @@
 let domainTime = {};   // Object to store time per domain
+let idleTime = 180; // considered idle after [idleTime] seconds of no action
+let verbose = true; // print session data to console
 
 class Session {
     constructor(domain) {
@@ -6,24 +8,46 @@ class Session {
       this.start = Date.now();
     }
 
-    close() {
-        this.end = Date.now();
-    }
-
     toString() {
-        return this.domain + " is activated at " + startTime;
+        return this.domain + " is activated at " + this.start;
     }
 }
+
+// Helper function to get domain from URL
+function getDomain(url) {
+    try {
+        return new URL(url).hostname; // Extract hostname
+    } catch (e) {
+        return null;
+    }
+}
+
+// Helper function to send signal to web app
+function record(url) {
+    chrome.storage.local.get(["isTracking"], data => {
+        if (data.isTracking === false) return;
+
+        if (!url) return;
+
+        let currentTab = getDomain(url); // Resume tracking
+        if (!currentTab) return;
+
+        let session = new Session(currentTab);
+        // send signal
+
+        if (verbose) {
+            console.log(session.toString());
+        }
+    });
+}
+
 
 // Track active tabs when they change
 chrome.tabs.onActivated.addListener(activeInfo => {
     // close session
     chrome.tabs.get(activeInfo.tabId, tab => {
         if (tab.url) {
-            let currentTab = getDomain(tab.url); // Get domain of the new tab
-            let session = Session(currentTab);
-            // send signal
-            console.log(session);
+            record(tab.url)
         }
     });
 });
@@ -32,9 +56,7 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (tab.active && changeInfo.url) {
         // close session
-        let session = Session(currentTab);
-        // send signal
-        console.log(session);
+        record(tab.url)
     }
 });
 
@@ -47,7 +69,7 @@ chrome.windows.onFocusChanged.addListener(windowId => {
 });
 
 // Pause tracking when the user is idle
-chrome.idle.setDetectionInterval(60); // Detect idle after 60 seconds
+chrome.idle.setDetectionInterval(idleTime); // Detect idle after 60 seconds
 chrome.idle.onStateChanged.addListener(state => {
     if (state === "idle" || state === "locked") {
         // close session
@@ -55,44 +77,8 @@ chrome.idle.onStateChanged.addListener(state => {
     } else if (state === "active") {
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
             if (tabs[0] && tabs[0].url) {
-                currentTab = getDomain(tabs[0].url); // Resume tracking
-                let session = Session(currentTab);
-                // send signal
-                console.log(session);
+                record(tabs[0].url)
             }
         });
     }
 });
-
-// Helper function to track time
-// function trackTime() {
-//     if (currentTab && startTime) {
-//         let timeSpent = (Date.now() - startTime) / 1000; // Convert to seconds
-//         timeSpent = Math.round(timeSpent * 10) / 10;
-
-//         // Store time for the previous site
-//         if (timeSpent > 0) { // Only save if there's actual time spent
-//             domainTime[currentTab] = (domainTime[currentTab] || 0) + timeSpent;
-//             chrome.storage.local.set({ domainTime });
-//             console.log(`Time recorded for ${currentTab}: ${timeSpent} seconds`);
-//         }
-//     }
-// }
-
-
-// Helper function to get domain from URL
-function getDomain(url) {
-    try {
-        return new URL(url).hostname; // Extract hostname (e.g., "google.com")
-    } catch (e) {
-        return null;
-    }
-}
-
-// Periodically log data (for debugging)
-// chrome.alarms.create("logTime", { periodInMinutes: 0.2 });
-// chrome.alarms.onAlarm.addListener(alarm => {
-//     if (alarm.name === "logTime") {
-//         console.log("Time tracked so far:", domainTime);
-//     }
-// });

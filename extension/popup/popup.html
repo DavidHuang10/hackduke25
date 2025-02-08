@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>STAR - Screen Time Analysis & Report</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>STAC - Screen Time Analytics & Control</title>
+        <link rel="stylesheet" href="popup.css">
         <style>
             body {
               font-family: Arial, sans-serif;
               padding: 20px;
+              text-align: center;
             }
             .switch-container {
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              justify-content: center;
+              gap: 10px;
             }
           </style>
     </head>
     <body>
-        <h1>STAR</h1>
-        <!-- On/Off switch -->
-        <div class="switch-container">
-            <label for="toggle-switch">Tracking:</label>
-            <input type="checkbox" id="toggle-switch" />
-        </div>
-        <!-- Information -->
-        <div id="time-info">
-            <h2>Time Spent</h2>
-            <div id="time-list"></div>
-        </div>
+        <div class="popup-container">
+            <h2>STAC</h2>
 
-        <script src="popup.js"></script>
+            <div class="toggle-container">
+                <span class="toggle-label">OFF</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-switch">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">ON</span>
+            </div>
+
+            <p id="status-text">Tracking is <strong>OFF</strong></p>
+
+            <script src="popup.js"></script>
+        </div>
     </body>
 </html>

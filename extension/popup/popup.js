@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggleSwitch = document.getElementById("toggle-switch");
-    const timeList = document.getElementById("time-list");
+    const statusText = document.getElementById("status-text");
 
-    // Initialize switch state
+    // ✅ Load tracking state when popup opens
     chrome.storage.local.get(["isTracking"], data => {
-        toggleSwitch.checked = data.isTracking ?? true; // Default to "on"
+        const isTracking = data.isTracking ?? true; // Default to ON if undefined
+        toggleSwitch.checked = isTracking;
+        updateStatusText(isTracking);
     });
 
-    // Handle toggle switch
+    // ✅ Handle switch toggle
     toggleSwitch.addEventListener("change", () => {
-        chrome.storage.local.set({ isTracking: toggleSwitch.checked });
+        const isTracking = toggleSwitch.checked;
+        chrome.storage.local.set({ isTracking });
+        updateStatusText(isTracking);
     });
 
-    // Display time information
-    chrome.storage.local.get(["domainTime"], data => {
-        const domainTime = data.domainTime || {};
-        timeList.innerHTML = Object.entries(domainTime)
-            .map(([domain, time]) => `<p>${domain}: ${Math.round(time)} seconds</p>`)
-            .join("");
-    });
+    // ✅ Function to update status text
+    function updateStatusText(isTracking) {
+        statusText.innerHTML = `Tracking is <strong>${isTracking ? "ON 🟢" : "OFF 🔴"}</strong>`;
+    }
 });
