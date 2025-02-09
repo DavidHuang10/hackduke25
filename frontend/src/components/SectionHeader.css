@@ -1,9 +1,10 @@
 .section-header {
   display: block;
-  margin: 40px 0;
-  padding: 10px 0;           /* Padding inside the header block */
-  background-color: transparent;
+  margin: 20px 0; /* Reduce this value */
+  padding: 10px 0;
 }
+
+
 
 .section-header-title {
   font-size: 2rem;
