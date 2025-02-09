@@ -1,0 +1,55 @@
+/* Block.css */
+
+/* Base block styles */
+.block {
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #a34516;
+  border-radius: 10px;
+  background-color: #1a0e08;  /* Dark orangey-black background */
+  color: white;
+  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;  /* Center all text */
+}
+
+/* Title styles */
+.block-title {
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 2.5rem;  /* Larger text for emphasis */
+  font-weight: 500;
+  margin: 10px 0 5px;  /* Less buffer between top of block and title */
+}
+
+/* Content styles */
+.block-content {
+  font-size: 1.2rem;  /* Slightly larger font size for content */
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+/* Full-width option */
+.block.full-width {
+  width: 100%;
+}
+
+/* Size modifiers */
+.block.small {
+  width: 200px;
+}
+
+.block.medium {
+  width: 400px;
+}
+
+.block.large {
+  width: 100%;
+  max-width: 880px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .block {
+    width: 100%;
+  }
+}

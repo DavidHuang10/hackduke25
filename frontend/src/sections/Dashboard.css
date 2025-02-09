@@ -1,0 +1,83 @@
+/* Dashboard.css */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Center the high-emphasis block */
+.centered-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Row for time blocks */
+.time-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Row for multiple blocks */
+.block-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Style for the top websites list */
+.website-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  color: white;
+  text-align: center;
+}
+
+.website-list li {
+  margin: 5px 0;
+  color: #ffae42;
+  font-weight: bold;
+}
+
+/* Eclipse score custom content style */
+.eclipse-score-content {
+  font-size: 3rem;  /* Increase font size to match visual balance */
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffae42;  /* Bright orange for emphasis */
+}
+
+/* Styles for time blocks */
+.time-block .block-title {
+  font-size: 3rem;
+  color: #ffae42;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.time-block .block-content {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Styles for time blocks */
+.big-boy-block .block-title {
+  font-size: 6rem;
+  color: #dc5800;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.big-boy-block .block-content {
+  font-size: 2rem;
+  color: white;
+}

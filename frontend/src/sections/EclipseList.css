@@ -1,0 +1,19 @@
+/* EclipseList.css */
+.eclipse-list {
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .focus-section {
+    margin-top: 10px;  /* Reduced margin */
+    margin-bottom: 40px;
+  }
+  
+  
+  .focus-section-title {
+    font-size: 3.3rem;
+    margin: 5px 0 15px;  /* Reduced top margin */
+    color: #f4f4f4;
+  }
+  

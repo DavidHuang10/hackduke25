@@ -1,3 +1,20 @@
+body {
+  font-family: 'Apple SD Gothic Neo', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;       /* Light weight for a thinner, more modern look */
+  letter-spacing: 0.5px;  /* Adjust spacing for refinement */
+  color: white;
+}
+
+
+.App {
+  text-align: left;
+}
+
+
+.App-link {
+  color: #ff9933;  /* Bright orange link for eclipse theme */
+}
+=======
 .App {
   text-align: center;
 }
