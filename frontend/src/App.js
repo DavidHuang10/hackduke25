@@ -6,6 +6,7 @@ import Dashboard from './sections/Dashboard';
 import EclipseList from './sections/EclipseList';
 import HeatBarContainer from './sections/HeatBarContainer';
 import Insights from './sections/Insights';
+import SetLimitSection from './sections/SetLimitSection';
 function App() {
   
   const hardcodedSessions = [
@@ -55,6 +56,7 @@ function App() {
       <SectionHeader>Insights</SectionHeader>
       <Insights insights={mockInsights} />
       <SectionHeader>Set Limits</SectionHeader>
+      <SetLimitSection />
 
       {/* Add content below to fill sections */}
       <p style={{ padding: '20px', color: 'white' }}>

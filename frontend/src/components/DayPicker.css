@@ -1,0 +1,31 @@
+.day-picker {
+    display: flex;
+    flex-direction: row;  /* Ensure the days are laid out in a row */
+    align-items: center;  /* Align items in the middle vertically */
+    justify-content: center;  /* Center the items horizontally */
+    gap: 8px;  /* Add some space between the buttons */
+    flex-wrap: wrap;  /* Allow the buttons to wrap on smaller screens */
+  }
+  
+  .day-picker-label {
+    font-size: 1.1rem;
+    color: #e0e0e0; /* Light gray for visibility */
+    margin-bottom: 10px;  /* Separate label from buttons */
+    width: 100%;  /* Make label full width */
+    text-align: center;  /* Center the label text */
+  }
+  
+  .day-button {
+    padding: 6px 12px;
+    background-color: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .day-button.selected {
+    background-color: #ffae42; /* Orange when selected */
+  }
+  
