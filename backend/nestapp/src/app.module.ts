@@ -7,6 +7,7 @@ import { ExtensionModule } from './services/extension/extension.module';
 import { AuthModule } from "./services/auth/auth.module";
 import { PrismaService } from "./prisma.service";
 import { DatabaseModule } from "./database.module";
+import { ActionsModule } from './services/actions/actions.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { DatabaseModule } from "./database.module";
     ProfileModule,
     ExtensionModule,
     AuthModule,
-    DatabaseModule
+    DatabaseModule,
+    ActionsModule
   ],
   controllers: [AppController],
   providers: [
