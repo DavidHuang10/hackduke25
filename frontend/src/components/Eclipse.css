@@ -1,5 +1,4 @@
-/* Base styles */
-.focus-session {
+.eclipse {
   padding: 20px;
   margin: 10px;
   border-radius: 10px;
@@ -7,39 +6,44 @@
   transition: all 0.3s ease;
   text-align: center;
   color: white;
-  border: 3px solid transparent;  /* Dynamic border */
+  border: 3px solid transparent;
 }
 
-/* Title styling */
-.focus-session-title {
+.eclipse-title {
   font-family: 'Apple SD Gothic Neo', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* Schedule text */
-.focus-session-schedule {
+.eclipse-schedule {
   font-size: 1.2rem;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
-/* Apply background and border colors based on mode */
-
-/* Current (active) mode */
-.focus-session.current {
-  background-color: #1a0e08;  /* Dark orangey-black */
-  border-color: #ff4500;       /* Orange border */
+.eclipse-blocked {
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
-/* Future (upcoming) mode */
-.focus-session.future {
-  background-color: #00172d;  /* Very dark blue */
-  border-color: #0040ff;      /* Blue border */
+.eclipse-days {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #ffae42;
+  font-weight: bold;
 }
 
-/* Status section */
-.focus-session-status {
+.eclipse.current {
+  background-color: #1a0e08;
+  border-color: #ff4500;
+}
+
+.eclipse.future {
+  background-color: #00172d;
+  border-color: #0040ff;
+}
+
+.eclipse-status {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,22 +56,19 @@
   transition: all 0.3s ease;
 }
 
-/* Current (active) status block */
-.focus-session-status.current {
+.eclipse-status.current {
   background: linear-gradient(135deg, #ff4500, #ff7300);
   border: 2px solid #ff4500;
   box-shadow: 0 0 15px rgba(255, 102, 0, 0.8);
 }
 
-/* Future (upcoming) status block */
-.focus-session-status.future {
+.eclipse-status.future {
   background: linear-gradient(135deg, #00264d, #004080);
   border: 2px solid #0040ff;
   box-shadow: 0 0 15px rgba(0, 119, 255, 0.8);
 }
 
-/* Icon styles */
-.focus-session-status svg {
+.eclipse-status svg {
   font-size: 1.8rem;
   margin-right: 10px;
   color: white;

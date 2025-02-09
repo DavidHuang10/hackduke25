@@ -1,19 +1,23 @@
-/* EclipseList.css */
 .eclipse-list {
-    padding: 20px;
-    color: white;
-    text-align: center;
-  }
-  
-  .focus-section {
-    margin-top: 10px;  /* Reduced margin */
-    margin-bottom: 40px;
-  }
-  
-  
-  .focus-section-title {
-    font-size: 3.3rem;
-    margin: 5px 0 15px;  /* Reduced top margin */
-    color: #f4f4f4;
-  }
-  
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.focus-section {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.focus-section-title {
+  font-size: 3.3rem;
+  margin: 5px 0 15px;
+  color: #f4f4f4;
+}
+
+.eclipse-list-loading {
+  text-align: center;
+  color: #ffae42;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
