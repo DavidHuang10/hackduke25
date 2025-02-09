@@ -3,14 +3,33 @@ import './App.css';
 import Header from './components/Header';
 import SectionHeader from './components/SectionHeader';
 import Dashboard from './sections/Dashboard';
-import { applyScrollEffect } from './scripts/scrollEffect';
+import EclipseList from './sections/EclipseList';
 
 function App() {
-  useEffect(() => {
-    const removeScrollEffect = applyScrollEffect();
-
-    return removeScrollEffect;
-  }, []);
+  
+  const hardcodedSessions = [
+    {
+      id: 1,
+      title: 'Morning Focus',
+      schedule: 'Every day, 10-12 am',
+      mode: 'current',
+      timeRemaining: '1 hr 30 min',
+    },
+    {
+      id: 2,
+      title: 'Afternoon Study',
+      schedule: 'Every day, 2-4 pm',
+      mode: 'future',
+      timeRemaining: '3 hr 15 min',
+    },
+    {
+      id: 3,
+      title: 'Evening Focus',
+      schedule: 'Every day, 7-9 pm',
+      mode: 'future',
+      timeRemaining: '6 hr',
+    },
+  ];
 
   return (
     <div className="App">
@@ -18,7 +37,10 @@ function App() {
 
       <SectionHeader>Dashboard</SectionHeader>
       <Dashboard />
-      <SectionHeader>Focus Sessions</SectionHeader>
+
+      <SectionHeader>Eclipses</SectionHeader>
+      <EclipseList sessions={hardcodedSessions} />
+
       <SectionHeader>Daily Usage</SectionHeader>
       <SectionHeader>Insights</SectionHeader>
       <SectionHeader>Set Limits</SectionHeader>
