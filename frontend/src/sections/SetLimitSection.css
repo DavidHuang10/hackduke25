@@ -1,64 +1,117 @@
 .set-limit-section {
-    padding: 20px;
-    background-color: #1a0e08;
-    border-radius: 10px;
-    color: white;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    text-align: center;
-    color: #ffae42;
-    margin-bottom: 20px;
-  }
-  
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .input-label {
-    font-size: 1.2rem;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .submit-button {
-    padding: 10px 20px;
-    background-color: #ff4500;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .submit-button:hover,
-  .time-picker-input:focus,
-  .time-input:focus,
-  .domain-input:focus {
-    background-color: #cc3700; /* Deeper orange on focus or hover */
-  }
-  
-  .feedback-message {
-    margin-top: 10px;
-    font-size: 1rem;
-    text-align: center;
-    transition: color 0.3s ease;  /* Smooth color transition */
-  }
-  
-  .feedback-message.error {
-    color: #d93025; /* Red for errors */
-    font-weight:bold
-  }
-  
-  .feedback-message.success {
-    color: #32cd32; /* Green for success */
-    font-weight: bold;  /* Make the text bold */
-  }
-  
+  padding: 20px;
+  background-color: #1a0e08;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.2rem; /* Slightly larger title */
+  text-align: center;
+  color: #ffae42;
+  margin-bottom: 20px;
+}
+
+/* Form container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input fields */
+.input-text,
+.time-picker-input,
+.domain-input {
+  padding: 12px;                /* Increase padding */
+  border: 2px solid #ff4500;
+  border-radius: 5px;
+  color: white;
+  background-color: #1a0e08;
+  font-size: 1.2rem;            /* Increase font size */
+  margin-bottom: 20px;
+}
+
+/* Focus styles for inputs */
+.input-text:focus,
+.time-picker-input:focus,
+.domain-input:focus {
+  border-color: #cc3700;
+  outline: none;
+}
+
+/* Labels for each input */
+.input-label {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+/* Submit button styles */
+.submit-button {
+  padding: 12px 24px;          /* Slightly larger button */
+  background-color: #ff4500;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #cc3700;   /* Deeper orange on hover */
+}
+
+/* Feedback message styles */
+.feedback-message {
+  margin-top: 10px;
+  font-size: 1.2rem;           /* Increased feedback text size */
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* Error and success feedback */
+.feedback-message.error {
+  color: #d93025;              /* Red for errors */
+  font-weight: bold;
+}
+
+.feedback-message.success {
+  color: #32cd32;              /* Green for success */
+  font-weight: bold;
+}
+
+/* Day picker buttons */
+.day-picker-button {
+  padding: 10px;
+  font-size: 1.2rem;           /* Consistent font size with inputs */
+  border: 2px solid #ff4500;
+  color: white;
+  background-color: #1a0e08;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Day picker hover and selected states */
+.day-picker-button:hover,
+.day-picker-button:focus {
+  background-color: #cc3700;   /* Deep orange on hover */
+}
+
+.day-picker-button.selected {
+  background-color: #ffae42;   /* Bright orange for selected */
+  color: black;
+}
+
+/* Adjust form element spacing */
+.time-picker,
+.domain-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -7,6 +7,7 @@ import DayPicker from '../components/DayPicker';
 
 function SetLimitSection() {
   const [limitData, setLimitData] = useState({
+    name: '',  // Added for session name
     startTime: '',
     endTime: '',
     allowedDistractionTime: 0,
@@ -22,14 +23,14 @@ function SetLimitSection() {
   };
 
   const handleSubmit = async () => {
-    if (!limitData.startTime || !limitData.endTime || limitData.domains.length === 0) {
+    // Validation checks including name
+    if (!limitData.name || !limitData.startTime || !limitData.endTime || limitData.domains.length === 0) {
       setFeedback({ message: 'Please fill in all fields.', type: 'error' });
       return;
     }
 
     const startTime = new Date(`01/01/2000 ${limitData.startTime}`);
     const endTime = new Date(`01/01/2000 ${limitData.endTime}`);
-
     if (startTime >= endTime) {
       setFeedback({ message: 'Start time must be before end time.', type: 'error' });
       return;
@@ -49,8 +50,15 @@ function SetLimitSection() {
 
   return (
     <div className="set-limit-section">
-      <h2 className="section-title">Set New Limit</h2>
+      <h2 className="section-title">Schedule Eclipse</h2>
       <div className="form-container">
+        <input
+          type="text"
+          className="input-text"
+          placeholder="Eclipse Name"
+          value={limitData.name}
+          onChange={(e) => handleInputChange('name', e.target.value)}
+        />
         <TimePicker
           label="Start Time"
           value={limitData.startTime}

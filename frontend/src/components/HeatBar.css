@@ -16,15 +16,15 @@
   }
   
   .heatbar-row {
-    margin: 20px 0;
-  }
-  
-  .heatbar-title {
+    margin: 10px 0;  /* Reduced the vertical margin */
+}
+
+.heatbar-title {
     font-size: 1.5rem;
     color: white;
-    margin-bottom: 10px;
-  }
-  
+    margin: 5px 0;  /* Reduced the margin below the title */
+}
+
   /* Wrapper for the heatbar and its scale */
   .heatbar-wrapper {
     position: relative;
@@ -54,22 +54,35 @@
     transition: transform 0.3s, box-shadow 0.3s;
   }
   
-  /* Usage blocks */
-  .heatbar-block.productive {
-    background-color: #0f9d58;
-    box-shadow: 0 0 8px rgba(15, 157, 88, 0.75);
-  }
-  
-  .heatbar-block.neutral {
-    background-color: #999;
-    box-shadow: 0 0 8px rgba(153, 153, 153, 0.75);
-  }
-  
-  .heatbar-block.distracting {
-    background-color: #d93025;
-    box-shadow: 0 0 8px rgba(217, 48, 37, 0.75);
-  }
-  
+ /* Productive block with gradient glow */
+.heatbar-block.productive {
+  background: linear-gradient(135deg, #0c7d47, #0f9d58, #1ad36b);
+  box-shadow: 0 0 12px rgba(26, 211, 107, 0.6), 0 0 20px rgba(26, 211, 107, 0.4);
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Distracting block with gradient glow */
+.heatbar-block.distracting {
+  background: linear-gradient(135deg, #a82015, #d93025, #f44336);
+  box-shadow: 0 0 12px rgba(244, 67, 54, 0.6), 0 0 20px rgba(244, 67, 54, 0.4);
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Neutral block remains the same with a slight shadow */
+.heatbar-block.neutral {
+  background-color: #888;
+  box-shadow: 0 0 8px rgba(136, 136, 136, 0.75);
+  border-radius: 5px;
+}
+
   /* Focus session blocks: diagonal hashed background with higher z-index */
   .heatbar-block.focus {
     background-image: repeating-linear-gradient(
@@ -91,35 +104,32 @@
     transform: scaleY(1.3);
     z-index: 200;
   }
- /* Current time indicator container now gets its left position from inline styles */
-.heatbar-current-time {
+  .heatbar-current-time {
     position: absolute;
     top: 0;
     height: 100%;
-    z-index: 1000;
-  }
-  
-  /* White line is positioned at the left edge of its container */
-  .current-time-line {
+    z-index: 900; /* Lower than the header's z-index */
+}
+
+.current-time-line {
     position: absolute;
     top: 0;
     height: 100%;
     width: 2px;
     background-color: white;
-  }
-  
-  /* The current time label is centered beneath the white line */
-  .current-time-label {
+}
+
+.current-time-label {
     position: absolute;
-    top: 55px; /* Adjust this value if you need it farther down */
+    top: 55px; /* Adjust as needed */
     font-size: 1rem;
     font-weight: bold;
     color: white;
     white-space: nowrap;
     left: 50%;
     transform: translateX(-50%);
-  }
-  
+}
+
   /* Scale labels: center most labels as before */
   .heatbar-scale-mark {
     position: absolute;
