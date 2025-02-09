@@ -1,0 +1,22 @@
+.section-header {
+  display: block;
+  margin: 40px 0;
+  padding: 10px 0;           /* Padding inside the header block */
+  background-color: transparent;
+}
+
+.section-header-title {
+  font-size: 2rem;
+  color: #f4f4f4;
+  font-weight: bold;
+  text-align: left;
+  margin: 0 0 10px 20px;    /* Adds spacing below the title and offsets it */
+}
+
+
+.section-header-line {
+  height: 3px;
+  width: 100%;               /* Ensure the line takes up the full width */
+  border-radius: 5px;
+  background: linear-gradient(to right, #ff4500, #ffae42);  /* Sunset gradient */
+}

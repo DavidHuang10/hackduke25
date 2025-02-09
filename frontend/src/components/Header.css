@@ -1,0 +1,27 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;      /* Pure black for a night-sky feel */
+  color: white;
+  border-bottom: 2px solid #ff6600; /* Orange accent line */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);  /* Slight shadow for depth */
+}
+
+.header-logo img {
+  margin-right: 10px;
+  height: 40px;
+}
+
+.header-actions .button {
+  margin-left: 10px;
+  background: linear-gradient(135deg, #ff6600, #ff9933);  /* Matches the button style */
+}
+
+.header-actions .button:hover {
+  background: linear-gradient(135deg, #cc5200, #ff6600);
+}

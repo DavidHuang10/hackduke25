@@ -1,0 +1,26 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #ff6600, #ff9933);  /* Orange gradient */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Adds depth */
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #cc5200, #ff6600);  /* Darker orange on hover */
+}
+
+
+/* Optional: Dark mode variation */
+.button-secondary {
+  background-color: #333333;
+  color: #e0e0e0;
+}
+
+.button-secondary:hover {
+  background-color: #444444;
+}
