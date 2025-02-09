@@ -14,7 +14,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 
 def get_response(prompt):
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("gemini-2.0-flash-thinking-exp-01-21")
         response = model.generate_content(prompt)
         return response.text.strip() if response.text else "No response from AI."
     except Exception as e:
@@ -22,41 +22,43 @@ def get_response(prompt):
 
 def classify_website(name, verbose=False):
     prompt = f"""
-    **Prompt:**
-    You are tasked with classifying websites based on their potential to distract users while they are in focus mode. Given the domain name of a website, classify it into one of the following categories:
+    You are an AI assistant designed to help users maintain focus by classifying websites based on their potential for distraction. Your task is to analyze a given domain name and categorize it according to its likelihood of disrupting a user's concentration during focused work sessions.
 
-    - **Disturbing (-1)**: The website is likely to lead to significant distractions and should be controlled.
-    - **Depends on the context (0)**: The website may or may not be distracting based on specific user context or content, use this option sparingly.
-    - **Not Disturbing (1)**: The website is unlikely to cause distractions and can be allowed.
+    Here is the domain name you need to classify:
+    {name}
 
-    For each domain name provided, give a clear classification based on the above criteria while minimizing the use of option (0). On the next line, provide a brief justification for your classification if necessary. Ensure your decisions are concise and focused on the impact of the website on user concentration. 
+    And here is whether justification is required (true/false):
+    {verbose}
 
-    **Input Format:** 
-    - Domain Name: [Enter domain here] 
-    - Justification Option: [True or False]
+    Please follow these steps to classify the website:
 
-    **Output Format:** 
-    [Choose -1, 0, or 1]
-    [Optional brief explanation] 
+    1. Analyze the domain name and consider the typical content and purpose of the website.
 
-    **Example Input 1:** 
-    - Domain Name: exampleone.com
-    - Justification Option: True
+    2. Classify the website into one of the following categories:
+    - Distracting (-1): Websites likely to cause significant distractions (e.g., social media, video streaming, gaming)
+    - Depends on the context (0): Websites that may or may not be distracting based on specific use cases
+    - Productive (1): Websites unlikely to cause distractions (e.g., productivity tools, reference sites, professional resources)
+
+    3. Provide your classification as a single digit: -1, 0, or 1.
+
+    4. If justification is required (justification required is true), provide a brief explanation for your classification on a new line. If justification is not required, do not provide any additional information.
+
+    Pay special attention to avoid misclassifying common productivity tools or search engines as distracting.
+
+    Examples of common website classifications (do not use these in your response, they are for guidance only):
+    - messenger.com: 0 (Depends on the context) - It's a messaging tool and productivity depends on the context
+    - facebook.com: -1 (Distracting) - Social media platform likely to cause distractions
+    - wikipedia.org: 1 (Productive) - Informational website, unlikely to cause significant distractions
     
-    **Example Output 1:**
-    1
-    This website provides educational content that supports focus.
-    
-    **Example 2:** 
-    - Domain Name: exampletwo.com
-    - Justification Option: False
-    
-    **Example Output 1:**
-    -1
-    
-    **Input:**
-    - Domain Name: {name}
-    - Justinfication Option: {verbose}
+    Output Format:
+    [classification as a single digit]
+    [justification]
+
+    Remember:
+    - Provide justification ONLY if the justification_required variable is set to true.
+    - Focus on the website's potential impact on user concentration, not its content quality or usefulness outside of focus sessions.
+
+    Please proceed with your analysis and classification.
     """
     
     return get_response(prompt)
