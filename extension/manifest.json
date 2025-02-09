@@ -1,5 +1,5 @@
 {
-    "name": "Screen Time Analysis & Report",
+    "name": "Eclipse",
     "description": "Tracks the time spent on different websites and provides analytics.",
     "version": "1.0",
     "manifest_version": 3,
@@ -15,10 +15,12 @@
         "service_worker": "background.js"
     },
     "action": {
-      "default_popup": "popup/popup.html",
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
     },
     "host_permissions": [
         "<all_urls>"

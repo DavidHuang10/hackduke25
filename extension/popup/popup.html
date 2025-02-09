@@ -1,40 +1,27 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>STAC - Screen Time Analytics & Control</title>
-        <link rel="stylesheet" href="popup.css">
-        <style>
-            body {
-              font-family: Arial, sans-serif;
-              padding: 20px;
-              text-align: center;
-            }
-            .switch-container {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 10px;
-            }
-          </style>
-    </head>
-    <body>
-        <div class="popup-container">
-            <h2>STAC</h2>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse</title>
+    <link rel="stylesheet" href="popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Georgia&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="popup-container">
+        <h1 class="title">Eclipse</h1>
+        <h3 class="subtitle">Screen Time Analytics & Report</h3>
 
-            <div class="toggle-container">
-                <span class="toggle-label">OFF</span>
-                <label class="switch">
-                    <input type="checkbox" id="toggle-switch">
-                    <span class="slider round"></span>
-                </label>
-                <span class="toggle-label">ON</span>
-            </div>
-
-            <p id="status-text">Tracking is <strong>OFF</strong></p>
-
-            <script src="popup.js"></script>
+        <div class="toggle-container">
+            <span class="toggle-label">OFF</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-switch">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">ON</span>
         </div>
-    </body>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
 </html>

@@ -1,12 +1,30 @@
+/* Duke Colors */
+:root {
+    --text: #2c313d;
+    --light: #feef5f;
+    --white: #f0f0f0;
+}
+
+body.off-mode {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+
+body.on-mode {
+    background-color: var(--text);
+    color: var(--white);
+}
+
 /* General Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
-    color: white;
+    font-family: Georgia, serif;
     text-align: center;
-    padding: 20px;
-    width: 250px;
-    border-radius: 10px;
+    padding: 10px;
+    width: 260px; 
+    border-radius: 12px; 
+    margin: 0;
+    transition: background-color 0.4s, color 0.4s;
 }
 
 /* Popup Container */
@@ -15,35 +33,49 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 5px;
 }
 
-/* Title */
-h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
+/* Title Styling */
+.title {
+    font-family: 'EB Garamond', serif;
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+
+/* Subtitle Styling */
+.subtitle {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: normal;
+    opacity: 0.8;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 /* Toggle Switch Container */
 .toggle-container {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 /* Toggle Labels (ON/OFF) */
 .toggle-label {
     font-size: 14px;
     font-weight: bold;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 25px;
+    width: 46px;
+    height: 24px;
 }
 
 /* Hide default checkbox */
@@ -61,7 +93,7 @@ h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #777;
     transition: 0.4s;
     border-radius: 25px;
 }
@@ -70,27 +102,20 @@ h2 {
 .slider::before {
     position: absolute;
     content: "";
-    height: 17px;
-    width: 17px;
+    height: 16px;
+    width: 16px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--white);
     transition: 0.4s;
     border-radius: 50%;
 }
 
 /* When the switch is ON */
 input:checked + .slider {
-    background-color: #34c759;
+    background-color: var(--light);
 }
 
 input:checked + .slider::before {
-    transform: translateX(24px);
-}
-
-/* Status Text */
-#status-text {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
+    transform: translateX(22px);
 }

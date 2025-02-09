@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggleSwitch = document.getElementById("toggle-switch");
     const statusText = document.getElementById("status-text");
+    const body = document.body;
 
-    // ✅ Load tracking state when popup opens
+    // Load tracking state when popup opens
     chrome.storage.local.get(["isTracking"], data => {
         const isTracking = data.isTracking ?? true; // Default to ON if undefined
         toggleSwitch.checked = isTracking;
-        updateStatusText(isTracking);
+        updateUI(isTracking);
     });
 
-    // ✅ Handle switch toggle
+    // Handle switch toggle
     toggleSwitch.addEventListener("change", () => {
         const isTracking = toggleSwitch.checked;
         chrome.storage.local.set({ isTracking });
-        updateStatusText(isTracking);
+        updateUI(isTracking);
     });
 
-    // ✅ Function to update status text
-    function updateStatusText(isTracking) {
-        statusText.innerHTML = `Tracking is <strong>${isTracking ? "ON 🟢" : "OFF 🔴"}</strong>`;
+    function updateUI(isTracking) {
+        body.className = isTracking ? "on-mode" : "off-mode";
     }
 });
