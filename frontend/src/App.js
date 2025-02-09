@@ -4,7 +4,7 @@ import Header from './components/Header';
 import SectionHeader from './components/SectionHeader';
 import Dashboard from './sections/Dashboard';
 import EclipseList from './sections/EclipseList';
-
+import HeatBarContainer from './sections/HeatBarContainer';
 function App() {
   
   const hardcodedSessions = [
@@ -42,6 +42,7 @@ function App() {
       <EclipseList sessions={hardcodedSessions} />
 
       <SectionHeader>Daily Usage</SectionHeader>
+      <HeatBarContainer />
       <SectionHeader>Insights</SectionHeader>
       <SectionHeader>Set Limits</SectionHeader>
 

@@ -1,4 +1,3 @@
-// sectionheader.js
 import React from 'react';
 import './SectionHeader.css'; // Import the CSS styles
 

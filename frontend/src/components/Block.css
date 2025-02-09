@@ -25,6 +25,7 @@
 .block-content {
   font-size: 1.2rem;  /* Slightly larger font size for content */
   line-height: 1.5;
+  font-weight: bold;
 }
 
 /* Full-width option */
