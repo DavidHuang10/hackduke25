@@ -1,4 +1,4 @@
-/* Duke Colors */
+/* Colors */
 :root {
     --text: #2c313d;
     --light: #feef5f;
@@ -6,12 +6,14 @@
 }
 
 body.off-mode {
+    /* background: linear-gradient(135deg, #f0f0f0 0%, #a4a4a4 100%); */
     background-color: var(--white);
     color: var(--text);
 }
 
 
 body.on-mode {
+    /* background: linear-gradient(135deg, #404757 0%, #161920 100%); */
     background-color: var(--text);
     color: var(--white);
 }
@@ -38,7 +40,6 @@ body {
 
 /* Title Styling */
 .title {
-    font-family: "Apple SD Gothic Neo", "Inter", Arial, sans-serif;
     font-size: 48px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -47,7 +48,6 @@ body {
 
 /* Subtitle Styling */
 .subtitle {
-    font-family: "Apple SD Gothic Neo", "Inter", Arial, sans-serif;
     font-size: 16px;
     font-weight: normal;
     opacity: 0.8;
@@ -118,4 +118,48 @@ input:checked + .slider {
 
 input:checked + .slider::before {
     transform: translateX(22px);
+}
+
+/* Login Input Fields */
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Buttons */
+button {
+    width: 95%;
+    padding: 10px;
+    background-color: var(--text);
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+button:hover {
+    background-color: #808080;
+    color: black;
+}
+
+body.on-mode button {
+    background-color: var(--light);
+    color: var(--text);
+}
+
+body.on-mode button:hover {
+    background-color: #E1C500;
+    color: black;
+}
+
+/* Hide elements when not in use */
+.hidden {
+    display: none;
 }

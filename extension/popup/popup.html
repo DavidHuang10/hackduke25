@@ -12,13 +12,23 @@
         <h1 class="title">Eclipse</h1>
         <h3 class="subtitle">Screen Time Analytics & Report</h3>
 
-        <div class="toggle-container">
-            <span class="toggle-label">OFF</span>
-            <label class="switch">
-                <input type="checkbox" id="toggle-switch">
-                <span class="slider round"></span>
-            </label>
-            <span class="toggle-label">ON</span>
+        <!-- Login Section (Shown when logged out) -->
+        <div id="login-section">
+            <input type="email" id="email" placeholder="Enter your email">
+            <input type="password" id="password" placeholder="Enter your password">
+            <button id="login-btn">Login</button>
+        </div>
+
+        <div id="main-section" class="hidden">
+            <div class="toggle-container">
+                <span class="toggle-label">OFF</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-switch">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">ON</span>
+            </div>
+            <button id="logout-btn" class="logout-btn">Logout</button>
         </div>
     </div>
 
