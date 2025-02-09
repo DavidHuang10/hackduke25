@@ -7,6 +7,7 @@ import { ExtensionModule } from './services/extension/extension.module';
 import { ProfileModule } from './services/profile/profile.module';
 import { ActionsModule } from './services/actions/actions.module';
 import { AuthModule } from './services/auth/auth.module';
+import { LimitsModule } from './limits/limits.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { AuthModule } from './services/auth/auth.module';
     ExtensionModule,
     ProfileModule,
     ActionsModule,
-    AuthModule,],
+    AuthModule,
+    LimitsModule,],
   controllers: [AppController],
   providers: [AppService],
 })
