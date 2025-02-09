@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './HeatBar.css';
 
 function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime }) {
+  // Ref for the container element to position the tooltip properly.
+  const containerRef = useRef(null);
   // State for the tooltip popup (text and absolute x,y coordinates)
   const [tooltip, setTooltip] = useState({ visible: false, text: '', x: 0, y: 0 });
 
@@ -34,6 +36,17 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
       const pos = computeBlockPosition(block, barStart, barEnd);
       return { ...block, ...pos };
     });
+  };
+
+  // Helper to compute duration string
+  const computeDuration = (start, end) => {
+    let startMin = timeToMinutes(start);
+    let endMin = timeToMinutes(end);
+    let diff = endMin - startMin;
+    if (diff < 0) diff += 1440; // in case of midnight crossover
+    const hours = Math.floor(diff / 60);
+    const minutes = diff % 60;
+    return `${hours > 0 ? hours + ' hr ' : ''}${minutes} mins`;
   };
 
   // Define day: 7:00 (420 min) to 19:00 (1140 min); night: 19:00 (1140) to 7:00 (420 next day)
@@ -78,14 +91,16 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
   const dayScale = generateScale(420, 1140);
   const nightScale = generateScale(1140, 420);
 
-  // When hovering over a block, show its name in a popup positioned above the block
-  const handleMouseEnter = (e, name) => {
+  // When hovering over a block, show its name and duration in a popup above the center of the block.
+  const handleMouseEnter = (e, block) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    // Get container's bounding rect to compute relative position
+    const containerRect = containerRef.current.getBoundingClientRect();
     setTooltip({
       visible: true,
-      text: name,
-      x: rect.left + rect.width / 2,
-      y: rect.top - 10,
+      text: `${block.name}: ${computeDuration(block.start, block.end)}`,
+      x: rect.left + rect.width / 2 - containerRect.left,
+      y: rect.top - containerRect.top - 10, // 10px above the block
     });
   };
 
@@ -94,7 +109,7 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
   };
 
   return (
-    <div className="heatbar-container">
+    <div className="heatbar-container" ref={containerRef}>
       {tooltip.visible && (
         <div className="heatbar-popup" style={{ top: tooltip.y, left: tooltip.x }}>
           <strong>{tooltip.text}</strong>
@@ -112,33 +127,28 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
                 key={index}
                 className={`heatbar-block ${block.type}`}
                 style={{ left: `${block.startPercentage}%`, width: `${block.widthPercentage}%` }}
-                onMouseEnter={(e) => handleMouseEnter(e, block.name)}
+                onMouseEnter={(e) => handleMouseEnter(e, block)}
                 onMouseLeave={handleMouseLeave}
               />
             ))}
-            {/* Render focus sessions as dashed blue-bordered boxes */}
+            {/* Render focus sessions as hashed blue boxes */}
             {processedFocusSessionsDay.map((block, index) => (
               <div
                 key={`focus-${index}`}
                 className="heatbar-block focus"
                 style={{ left: `${block.startPercentage}%`, width: `${block.widthPercentage}%` }}
-                onMouseEnter={(e) => handleMouseEnter(e, block.name)}
+                onMouseEnter={(e) => handleMouseEnter(e, block)}
                 onMouseLeave={handleMouseLeave}
               />
             ))}
             {/* Current time indicator for day */}
             {isDayTime(currentTime) && (
-              <div className="heatbar-current-time">
-                <div
-                  className="current-time-line"
-                  style={{ left: `${getCurrentPosition(currentTime, 420, 1140)}%` }}
-                />
-                <div
-                  className="current-time-label"
-                  style={{ left: `${getCurrentPosition(currentTime, 420, 1140)}%` }}
-                >
-                  Current Time
-                </div>
+              <div
+                className="heatbar-current-time"
+                style={{ left: `${getCurrentPosition(currentTime, 420, 1140)}%` }}
+              >
+                <div className="current-time-line" />
+                <div className="current-time-label">Now</div>
               </div>
             )}
           </div>
@@ -163,7 +173,7 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
                 key={index}
                 className={`heatbar-block ${block.type}`}
                 style={{ left: `${block.startPercentage}%`, width: `${block.widthPercentage}%` }}
-                onMouseEnter={(e) => handleMouseEnter(e, block.name)}
+                onMouseEnter={(e) => handleMouseEnter(e, block)}
                 onMouseLeave={handleMouseLeave}
               />
             ))}
@@ -172,23 +182,18 @@ function HeatBar({ dayData = [], nightData = [], focusSessions = [], currentTime
                 key={`focus-night-${index}`}
                 className="heatbar-block focus"
                 style={{ left: `${block.startPercentage}%`, width: `${block.widthPercentage}%` }}
-                onMouseEnter={(e) => handleMouseEnter(e, block.name)}
+                onMouseEnter={(e) => handleMouseEnter(e, block)}
                 onMouseLeave={handleMouseLeave}
               />
             ))}
             {/* Current time indicator for night */}
             {!isDayTime(currentTime) && (
-              <div className="heatbar-current-time">
-                <div
-                  className="current-time-line"
-                  style={{ left: `${getCurrentPosition(currentTime, 1140, 420)}%` }}
-                />
-                <div
-                  className="current-time-label"
-                  style={{ left: `${getCurrentPosition(currentTime, 1140, 420)}%` }}
-                >
-                  Current Time
-                </div>
+              <div
+                className="heatbar-current-time"
+                style={{ left: `${getCurrentPosition(currentTime, 1140, 420)}%` }}
+              >
+                <div className="current-time-line" />
+                <div className="current-time-label">Current: {currentTime}</div>
               </div>
             )}
           </div>
