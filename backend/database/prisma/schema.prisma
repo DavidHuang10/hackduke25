@@ -14,21 +14,40 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  username String @unique
-  name String
-  actions Action[]
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  name         String
+  actions      Action[]
+  limits       Limits[]
+  domainGroups DomainGroup[]
 }
 
 model Action {
-  id Int @id @default(autoincrement())
-  user User @relation(fields:[userId], references: [id])
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
   userId Int
   domain String
-  act Act
+  act    Act
 }
 
 enum Act {
   ACTIVATE
   DEACTIVATE
+}
+
+model Limits {
+  id              Int           @id @default(autoincrement())
+  user            User          @relation(fields: [userId], references: [id])
+  userId          Int
+  specificDomains String
+  domainGroups    DomainGroup[]
+}
+
+model DomainGroup {
+  id       Int     @id @default(autoincrement())
+  user     User    @relation(fields: [userId], references: [id])
+  userId   Int
+  domains  String
+  Limits   Limits? @relation(fields: [limitsId], references: [id])
+  limitsId Int?
 }
