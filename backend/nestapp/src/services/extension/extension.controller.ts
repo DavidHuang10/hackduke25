@@ -6,7 +6,7 @@ export class ExtensionController {
   constructor(private readonly extensionService: ExtensionService) {}
 
   @Post('record')
-  record(@Body() data: { user: string | null; domain: string | null; time: number }) {
+  record(@Body() data: { user: string; domain: string | null; time: number }) {
     return this.extensionService.record(data);
   }
 }

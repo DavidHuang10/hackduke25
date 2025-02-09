@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data.user) {
             showMainUI();
         } else {
-            showMainUI(); // showLoginUI();
+            showLoginUI();
         }
     });
 
@@ -31,16 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("http://127.0.0.1:3000/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email: email.toLowerCase(), password })
         })
         .then(response => response.json())
         .then(data => {
-            if (data.token) {
-                chrome.storage.sync.set({ user: email, token: data.token }, () => {
+            if (data.token && data.userId) {  // Expecting userId from backend
+                chrome.storage.sync.set({ userId: data.userId, token: data.token }, () => {
                     showMainUI();
                 });
             } else {
-                alert("Login failed.");
+                alert("Login failed: " + (data.error || "Unknown error"));
             }
         })
         .catch(error => console.error("Login error:", error));

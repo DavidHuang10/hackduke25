@@ -18,12 +18,13 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pg": "^8.13.1",
-    "prisma": "^6.3.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "prisma": "^6.3.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "type": "module"
 }

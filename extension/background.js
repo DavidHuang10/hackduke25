@@ -4,18 +4,19 @@ let verbose = true; // print session data to console
 const REDIRECT_URL = "https://www.google.com";
 
 class Session {
-    constructor(name) {
-      this.info = {
-        user: null,
-        domain: name,
-        time: Date.now(),
-      }
+    constructor(name, userId) {
+        this.info = {
+            user: userId,
+            domain: name,
+            time: Date.now(),
+        };
     }
 
     toString() {
-        return `${this.info.domain} is activated at ${new Date(this.info.time).toLocaleString()}`
+        return `${this.info.domain} is activated at ${new Date(this.info.time).toLocaleString()} for user ${this.info.user}`;
     }
 }
+
 
 // Helper function to get domain from URL
 function getDomain(url) {
@@ -54,42 +55,46 @@ function report(session) {
 
 // Helper function to send signal to web app
 function record(url, tabId) {
-    chrome.storage.local.get(["isTracking"], data => {
+    chrome.storage.local.get(["isTracking"], async data => {
         if (data.isTracking === false) return;
 
         if (!url) return;
 
-        let currentTab = getDomain(url); // Resume tracking
+        let currentTab = getDomain(url);
         if (!currentTab) return;
 
-        // check if domain is blocked
         if (isFocus() && getBlocked().includes(currentTab)) {
             console.log(`Redirecting from ${currentTab} to ${REDIRECT_URL}`);
             chrome.tabs.update(tabId, { url: REDIRECT_URL });
             return
         }
 
-        let session = new Session(currentTab);
-        
-        report(session);
+        chrome.storage.sync.get(["userId"], id => {
+            id = id["userId"]
+            if (!id) return;
+            console.log("id: ", id)
 
-        if (verbose) {
-            console.log(session.toString());
-        }
+            let session = new Session(currentTab, id);
+            console.log("Reporting: ", JSON.stringify(session.info));
+            report(session);
+        });
     });
 }
+
+
 
 function inactive() {
     chrome.storage.local.get(["isTracking"], data => {
         if (data.isTracking === false) return;
 
-        let session = new Session(null);
-        
-        report(session);
+        chrome.storage.sync.get(["userId"], id => {
+            id = id["userId"]
+            if (!id) return;
 
-        if (verbose) {
-            console.log(session.toString());
-        }
+            let session = new Session(null, id);
+            console.log("Reporting: ", JSON.stringify(session.info));
+            report(session);
+        });
     });
 }
 
