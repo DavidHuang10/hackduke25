@@ -51,6 +51,7 @@ function App() {
         Scroll down to explore each section. Add more content as needed.
       </p>
       <div style={{ height: '1000px' }}></div>
+
     </div>
   );
 }
