@@ -18,7 +18,7 @@ body.on-mode {
 
 /* General Styling */
 body {
-    font-family: Georgia, serif;
+    font-family: "Apple SD Gothic Neo", "Inter", Arial, sans-serif;
     text-align: center;
     padding: 10px;
     width: 260px; 
@@ -38,16 +38,16 @@ body {
 
 /* Title Styling */
 .title {
-    font-family: 'EB Garamond', serif;
+    font-family: "Apple SD Gothic Neo", "Inter", Arial, sans-serif;
     font-size: 48px;
     font-weight: bold;
     letter-spacing: 1px;
-    margin: 5px 0;
+    margin: 5px;
 }
 
 /* Subtitle Styling */
 .subtitle {
-    font-family: Georgia, serif;
+    font-family: "Apple SD Gothic Neo", "Inter", Arial, sans-serif;
     font-size: 16px;
     font-weight: normal;
     opacity: 0.8;
@@ -60,7 +60,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 /* Toggle Labels (ON/OFF) */
