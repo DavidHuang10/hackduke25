@@ -42,7 +42,12 @@ model Limits {
   id              Int           @id @default(autoincrement())
   user            User          @relation(fields: [userId], references: [id])
   userId          Int
-  specificDomains String
+  name String
+  startTime String
+  endTime String
+  allowedDistractionTime Float
+  recurringDays Days[]
+  specificDomains String[]
   domainGroups    DomainGroup[]
 }
 
@@ -50,7 +55,16 @@ model DomainGroup {
   id       Int     @id @default(autoincrement())
   user     User    @relation(fields: [userId], references: [id])
   userId   Int
-  domains  String
-  Limits   Limits? @relation(fields: [limitsId], references: [id])
-  limitsId Int?
+  domains  String[]
+  Limits   Limits[]
+}
+
+enum Days {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
 }
